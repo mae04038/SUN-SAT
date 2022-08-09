@@ -1,11 +1,18 @@
-import './App.css';
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import SubPage from "./components/SubPage/SubPage";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SubPage from './SubPage/SubPage/SubPage';
+import Footer from './Components/Footer';
+import MainPage from './MainPage/MainPage';
 
 function App() {
   return (
-    <div className="App">
-      <SubPage />
+    <div className='SUN-SAT'>
+      <Router>
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/search' element={<SubPage />} />
+        </Routes>
+      </Router>
+      <Footer />
     </div>
   );
 }
