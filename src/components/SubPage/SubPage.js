@@ -7,14 +7,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
 
-const SubPage = () => {
+const SubPage = async () => {
     const city = 'Seoul'; // 임시 설정 - 나중에 변경해주기
     const [weather, setWeather] = useState("");
+
+    // 현재 위치 가져오기
+    
         
     // 날씨 api 불러온 결과 확인용
     useEffect(() => {
         axios        
-        .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+        .get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`)
         .then((response) => {
             const data = response.data; // api에서 가져오는 날씨정보 저장
             console.log(data);
@@ -48,7 +51,7 @@ const SubPage = () => {
         <div >
             <SearchBar><span>SearchBar</span></SearchBar>
             <div>
-                <h2>{city}</h2>
+                <h2>현재위치</h2>
                 <h4>날짜-시간</h4>
                 <div>날씨 아이콘</div>
                 <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
