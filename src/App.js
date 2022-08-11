@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SubPage from './SubPage/SubPage/SubPage';
+import SubPage from './SubPage/SubPage';
 import Footer from './Components/Footer';
 import MainPage from './MainPage/MainPage';
 
