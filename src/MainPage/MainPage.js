@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import './MainPage.css'; //폰트방법 찾으면 지울예정
 import axios from 'axios';
 import API_KEY from '../config';
+import { useNavigate } from 'react-router';
 
 function MainPage({ history }) {
   const [result, setResult] = useState({});
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
 
   //현재 위치 성공
   const getPosSucc = (pos) => {
@@ -52,10 +55,11 @@ function MainPage({ history }) {
   //Enter Key 누르면 페이지 이동
   const searchWeather = (e) => {
     if (e.key === 'Enter') {
-      history.push('/search');
+      navigate('/search', {
+        state: search,
+      });
     }
   };
-  console.log(result);
   return (
     <AppWrap>
       <div className='mainContainer'>
@@ -63,8 +67,10 @@ function MainPage({ history }) {
         <input
           className='mainSearchbar'
           placeholder='지역을 검색하세요'
-          onKeyDown={(e) => searchWeather(e.target.value)}
           type='text'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyPress={searchWeather}
         />
         {/* setResult : useState 안에 {} 빈 오브젝트가 아니면 */}
         {Object.keys(result).length !== 0 && (
