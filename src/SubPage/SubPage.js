@@ -9,8 +9,8 @@ import styled from 'styled-components';
 
 const SubPage = (props) => {
   const city = 'Seoul'; // 임시 설정 - 나중에 변경해주기
-  
   const [weather, setWeather] = useState('');
+  const [icon, setIcon] = useState(''); // 날씨 api에서 아이콘 받아와서 저장 
   
   // 현재 날짜 가져오기
   const now = new Date();
@@ -21,7 +21,7 @@ const SubPage = (props) => {
   const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
   const dayOfWeek = week[now.getDay()];
 
-  // 현재 위치 가져오기
+
 
   // 날씨 api 불러온 결과 확인용
   useEffect(() => {
@@ -42,11 +42,17 @@ const SubPage = (props) => {
           feels_like: data.main.feels_like,
           humidity: data.main.humidity,
           wind_speed: data.wind.speed,
-
+          
           loading: false,
+          
         });
+        setIcon(data.weather[0].icon);
+        
       });
   }, []);
+
+  
+  // const weatherIconAdrs = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
   const settings = {
     arrows: true,
@@ -69,7 +75,7 @@ const SubPage = (props) => {
       <div >
         <div className='city'><h2>{city}</h2></div>
         <div className='current_date'><h4>{year} {todayMonth} {todayDate}, {dayOfWeek}</h4></div>
-        <div>날씨 아이콘</div>
+        <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
         <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
         <h3>{weather.main}</h3>
         <div>{weather.description}</div>
@@ -80,19 +86,19 @@ const SubPage = (props) => {
         <SliderWrap>
           <Slider {...settings} >
             <div>
-              <h3>최저/최고 기온</h3>
+              <h3>Min/Max Tmperature</h3>
               <div>
                 {(weather.temp_min - 273.15).toFixed(0)}℃/
                 {(weather.temp_max - 273.15).toFixed(0)}℃
               </div>
             </div>
             <div>
-              <h3>체감온도</h3>
+              <h3>Feels like</h3>
               <div>{(weather.feels_like - 273.15).toFixed(0)}℃</div>
             </div>
             <div>
-              <h3>풍속</h3>
-              <div>{weather.wind_speed}m/s</div>
+              <h3>Wind</h3>
+              <div>{weather.wind_speed}m/s SSE</div>
             </div>
             <div>
               <h3>4</h3>
@@ -101,7 +107,7 @@ const SubPage = (props) => {
               <h3>5</h3>
             </div>
             <div>
-              <h3>습도</h3>
+              <h3>Humidity</h3>
               <div>{weather.humidity}%</div>
             </div>
           </Slider>
