@@ -74,7 +74,7 @@ const SubPage = (props) => {
       </SearchBar>
       <div >
         <div className='city'><h2>{city}</h2></div>
-        <div className='current_date'><h4>{year} {todayMonth} {todayDate}, {dayOfWeek}</h4></div>
+        <div className='current_date'><h4>{todayMonth} {todayDate}, {dayOfWeek}</h4></div>
         <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
         <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
         <h3>{weather.main}</h3>
@@ -86,29 +86,29 @@ const SubPage = (props) => {
         <SliderWrap>
           <Slider {...settings} >
             <div>
-              <h3>Min/Max Tmperature</h3>
-              <div>
+              <span>Min/Max Tmperature</span>
+              <h3>
                 {(weather.temp_min - 273.15).toFixed(0)}℃/
                 {(weather.temp_max - 273.15).toFixed(0)}℃
-              </div>
+              </h3>
             </div>
             <div>
-              <h3>Feels like</h3>
-              <div>{(weather.feels_like - 273.15).toFixed(0)}℃</div>
+              <span>Feels like</span>
+              <h3>{(weather.feels_like - 273.15).toFixed(0)}℃</h3>
             </div>
             <div>
-              <h3>Wind</h3>
-              <div>{weather.wind_speed}m/s SSE</div>
+              <span>Wind</span>
+              <h3>{weather.wind_speed}m/s SSE</h3>
             </div>
             <div>
-              <h3>4</h3>
+              <span>4</span>
             </div>
             <div>
-              <h3>5</h3>
+              <span>5</span>
             </div>
             <div>
-              <h3>Humidity</h3>
-              <div>{weather.humidity}%</div>
+              <span>Humidity</span>
+              <h3>{weather.humidity}%</h3>
             </div>
           </Slider>
         </SliderWrap>
