@@ -5,19 +5,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import { useLocation } from 'react-router';
-
-const SubPage = () => {
-  const { state } = useLocation(); //useLocation : navigate에서 받아온 state값 정보
-  const city = state; // 임시 설정 - 나중에 변경해주기
-=======
 import { useLocation } from 'react-router-dom';
 
 const SubPage = () => {
   const location = useLocation();
   const city = location.state; // 임시 설정 - 나중에 변경해주기
->>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
   const [weather, setWeather] = useState('');
   const [icon, setIcon] = useState(''); // 날씨 api에서 아이콘 받아와서 저장
 
@@ -43,10 +35,6 @@ const SubPage = () => {
   const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const dayOfWeek = week[now.getDay()];
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
   // 날씨 api 불러온 결과 확인용
   useEffect(() => {
     axios
@@ -73,13 +61,7 @@ const SubPage = () => {
       });
   }, []);
 
-<<<<<<< HEAD
-  // const weatherIconAdrs = `http://openweathermap.org/img/wn/${icon}@2x.png`
-
-=======
-  
   // 슬라이더 적용 속성
->>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
   const settings = {
     arrows: true,
     dots: true,
@@ -90,84 +72,71 @@ const SubPage = () => {
     centerMode: true,
     centerPadding: '0px',
     focusOnSelect: true,
-    responsive : [
-      
+    responsive: [
       {
         breakpoint: 780,
         settings: {
-            slidesToShow: 2,
-        }
+          slidesToShow: 2,
+        },
       },
       {
         breakpoint: 500,
         settings: {
-            slidesToShow: 1,
-        }
+          slidesToShow: 1,
+        },
       },
-    ]
+    ],
   };
-  
 
   return (
     <AppWrap>
-    <div>
-      <SearchBar>
-        <span className='search_bar'>SearchBar</span>
-        {/* <div></div> */}
-      </SearchBar>
-<<<<<<< HEAD
       <div>
-        <div className='city'>
-          <h2>{city}</h2>
-        </div>
-        <div className='current_date'>
-          <h4>
-            {todayMonth} {todayDate}, {dayOfWeek}
-          </h4>
-        </div>
-=======
-      <div className=''>
-        <div className='city'><h2>{city}</h2></div>
-        <div className='current_date'><h4>{todayMonth} {todayDate}, {dayOfWeek}</h4></div>
->>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
-        <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
-        <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
-        <h3>{weather.main}</h3>
-        <div>{weather.description}</div>
-        <br />
-        <br />
-        <br />
-<<<<<<< HEAD
+        <SearchBar>
+          <span className='search_bar'>SearchBar</span>
+          {/* <div></div> */}
+        </SearchBar>
+        <div className=''>
+          <div className='city'>
+            <h2>{city}</h2>
+          </div>
+          <div className='current_date'>
+            <h4>
+              {todayMonth} {todayDate}, {dayOfWeek}
+            </h4>
+          </div>
+          <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
+          <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
+          <h3>{weather.main}</h3>
+          <div>{weather.description}</div>
+          <br />
+          <br />
+          <br />
 
-=======
-        
-        
->>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
-        <SliderWrap>
-          <Slider {...settings}>
-            <div>
-              <span>Min/Max Tmperature</span>
-              <h3>
-                {(weather.temp_min - 273.15).toFixed(0)}℃/
-                {(weather.temp_max - 273.15).toFixed(0)}℃
-              </h3>
-            </div>
-            <div>
-              <span>Feels like</span>
-              <h3>{(weather.feels_like - 273.15).toFixed(0)}℃</h3>
-            </div>
-            <div>
-              <span>Wind</span>
-              <h3>{weather.wind_speed}m/s SSE</h3>
-            </div>
-            <div>
-              <span>Humidity</span>
-              <h3>{weather.humidity}%</h3>
-            </div>
-          </Slider>
-        </SliderWrap>
+          <SliderWrap>
+            <Slider {...settings}>
+              <div>
+                <span>Min/Max Tmperature</span>
+                <h3>
+                  {(weather.temp_min - 273.15).toFixed(0)}℃/
+                  {(weather.temp_max - 273.15).toFixed(0)}℃
+                </h3>
+              </div>
+              <div>
+                <span>Feels like</span>
+                <h3>{(weather.feels_like - 273.15).toFixed(0)}℃</h3>
+              </div>
+              <div>
+                <span>Wind</span>
+                <h3>{weather.wind_speed}m/s SSE</h3>
+              </div>
+              <div>
+                <span>Humidity</span>
+                <h3>{weather.humidity}%</h3>
+              </div>
+            </Slider>
+          </SliderWrap>
+        </div>
       </div>
-    </div>
     </AppWrap>
   );
 };
@@ -175,10 +144,9 @@ const SubPage = () => {
 export default SubPage;
 
 const SearchBar = styled.div`
-
   text-align: right;
-  padding : 1% 4%;
-  
+  padding: 1% 4%;
+
   .search_bar {
     width: 150px;
     border-bottom: 1px solid black;
@@ -196,5 +164,4 @@ const AppWrap = styled.div`
   background-color: #ddeeb7;
   align-items: center;
   text-align: center;
-
 `;

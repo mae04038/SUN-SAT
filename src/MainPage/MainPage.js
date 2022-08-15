@@ -102,7 +102,6 @@ function MainPage() {
         {/* setResult : useState 안에 {} 빈 오브젝트가 아니면 */}
         {Object.keys(result).length !== 0 && (
           <ResultWrap>
-<<<<<<< HEAD
             <img
               id='mainWeather'
               src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
@@ -137,18 +136,6 @@ function MainPage() {
                 </div>
               </Slider>
             </SliderWrap>
-=======
-            <div id='mainSlider' type='text'>
-              <img
-                id='mainWeather'
-                src={'Images/cloudy.png'}
-                alt='cloudy'
-              ></img>
-              <div id='cityName'>{result.data.name}</div>
-              <div id='temperature'>{(result.data.main.temp).toFixed(0)}°⁣C</div>
-              <div id='sky'>{result.data.weather[0].main}</div>
-            </div>
->>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
           </ResultWrap>
         )}
       </div>
