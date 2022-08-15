@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './SubPage.css';
 import API_KEY from '../config';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import { useLocation } from 'react-router';
 
 const SubPage = () => {
   const { state } = useLocation(); //useLocation : navigate에서 받아온 state값 정보
   const city = state; // 임시 설정 - 나중에 변경해주기
+=======
+import { useLocation } from 'react-router-dom';
+
+const SubPage = () => {
+  const location = useLocation();
+  const city = location.state; // 임시 설정 - 나중에 변경해주기
+>>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
   const [weather, setWeather] = useState('');
   const [icon, setIcon] = useState(''); // 날씨 api에서 아이콘 받아와서 저장
 
@@ -36,6 +43,10 @@ const SubPage = () => {
   const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const dayOfWeek = week[now.getDay()];
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
   // 날씨 api 불러온 결과 확인용
   useEffect(() => {
     axios
@@ -62,8 +73,13 @@ const SubPage = () => {
       });
   }, []);
 
+<<<<<<< HEAD
   // const weatherIconAdrs = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
+=======
+  
+  // 슬라이더 적용 속성
+>>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
   const settings = {
     arrows: true,
     dots: true,
@@ -74,13 +90,32 @@ const SubPage = () => {
     centerMode: true,
     centerPadding: '0px',
     focusOnSelect: true,
+    responsive : [
+      
+      {
+        breakpoint: 780,
+        settings: {
+            slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 500,
+        settings: {
+            slidesToShow: 1,
+        }
+      },
+    ]
   };
+  
 
   return (
+    <AppWrap>
     <div>
       <SearchBar>
-        <span>SearchBar</span>
+        <span className='search_bar'>SearchBar</span>
+        {/* <div></div> */}
       </SearchBar>
+<<<<<<< HEAD
       <div>
         <div className='city'>
           <h2>{city}</h2>
@@ -90,6 +125,11 @@ const SubPage = () => {
             {todayMonth} {todayDate}, {dayOfWeek}
           </h4>
         </div>
+=======
+      <div className=''>
+        <div className='city'><h2>{city}</h2></div>
+        <div className='current_date'><h4>{todayMonth} {todayDate}, {dayOfWeek}</h4></div>
+>>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
         <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
         <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
         <h3>{weather.main}</h3>
@@ -97,7 +137,12 @@ const SubPage = () => {
         <br />
         <br />
         <br />
+<<<<<<< HEAD
 
+=======
+        
+        
+>>>>>>> 18e1eec06e2d23ad6add0d74adf756ed2bc51395
         <SliderWrap>
           <Slider {...settings}>
             <div>
@@ -116,12 +161,6 @@ const SubPage = () => {
               <h3>{weather.wind_speed}m/s SSE</h3>
             </div>
             <div>
-              <span>4</span>
-            </div>
-            <div>
-              <span>5</span>
-            </div>
-            <div>
               <span>Humidity</span>
               <h3>{weather.humidity}%</h3>
             </div>
@@ -129,16 +168,33 @@ const SubPage = () => {
         </SliderWrap>
       </div>
     </div>
+    </AppWrap>
   );
 };
 
 export default SubPage;
 
 const SearchBar = styled.div`
+
   text-align: right;
+  padding : 1% 4%;
+  
+  .search_bar {
+    width: 150px;
+    border-bottom: 1px solid black;
+  }
 `;
 
 const SliderWrap = styled.div`
   width: 70%;
   margin: 0 auto;
+`;
+
+const AppWrap = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: #ddeeb7;
+  align-items: center;
+  text-align: center;
+
 `;
