@@ -82,7 +82,7 @@ function MainPage({ history }) {
                 alt='cloudy'
               ></img>
               <div id='cityName'>{result.data.name}</div>
-              <div id='temperature'>{result.data.main.temp}°⁣C</div>
+              <div id='temperature'>{(result.data.main.temp).toFixed(0)}°⁣C</div>
               <div id='sky'>{result.data.weather[0].main}</div>
             </div>
           </ResultWrap>

@@ -19,5 +19,6 @@ const MainFooter = styled.div`
     width: 100vw;
     height: 50px;
     bottom: 0;
+    position: fixed;
   }
 `;
