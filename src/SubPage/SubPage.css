@@ -1,8 +1,5 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
 * {
   background-color: #ddeeb7;
   align-items: center;
   text-align: center;
-  font-family: 'Noto Sans KR', sans-serif;
 }

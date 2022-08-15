@@ -6,22 +6,35 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
+import { useLocation } from 'react-router';
 
-const SubPage = (props) => {
-  const city = 'Seoul'; // 임시 설정 - 나중에 변경해주기
+const SubPage = () => {
+  const { state } = useLocation(); //useLocation : navigate에서 받아온 state값 정보
+  const city = state; // 임시 설정 - 나중에 변경해주기
   const [weather, setWeather] = useState('');
-  const [icon, setIcon] = useState(''); // 날씨 api에서 아이콘 받아와서 저장 
-  
+  const [icon, setIcon] = useState(''); // 날씨 api에서 아이콘 받아와서 저장
+
   // 현재 날짜 가져오기
   const now = new Date();
   const year = now.getFullYear();
-  const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const month = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   const todayMonth = month[now.getMonth()];
   const todayDate = now.getDate();
-  const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+  const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const dayOfWeek = week[now.getDay()];
-
-
 
   // 날씨 api 불러온 결과 확인용
   useEffect(() => {
@@ -42,16 +55,13 @@ const SubPage = (props) => {
           feels_like: data.main.feels_like,
           humidity: data.main.humidity,
           wind_speed: data.wind.speed,
-          
+
           loading: false,
-          
         });
         setIcon(data.weather[0].icon);
-        
       });
   }, []);
 
-  
   // const weatherIconAdrs = `http://openweathermap.org/img/wn/${icon}@2x.png`
 
   const settings = {
@@ -68,13 +78,18 @@ const SubPage = (props) => {
 
   return (
     <div>
-
       <SearchBar>
         <span>SearchBar</span>
       </SearchBar>
-      <div >
-        <div className='city'><h2>{city}</h2></div>
-        <div className='current_date'><h4>{todayMonth} {todayDate}, {dayOfWeek}</h4></div>
+      <div>
+        <div className='city'>
+          <h2>{city}</h2>
+        </div>
+        <div className='current_date'>
+          <h4>
+            {todayMonth} {todayDate}, {dayOfWeek}
+          </h4>
+        </div>
         <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
         <h1>{(weather.temperature - 273.15).toFixed(0)}℃</h1>
         <h3>{weather.main}</h3>
@@ -82,9 +97,9 @@ const SubPage = (props) => {
         <br />
         <br />
         <br />
-        
+
         <SliderWrap>
-          <Slider {...settings} >
+          <Slider {...settings}>
             <div>
               <span>Min/Max Tmperature</span>
               <h3>
@@ -113,7 +128,6 @@ const SubPage = (props) => {
           </Slider>
         </SliderWrap>
       </div>
-
     </div>
   );
 };
