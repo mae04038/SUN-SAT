@@ -1,6 +1,8 @@
 # SUN-SAT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+현재 위치의 "날씨, (최고/최저)기온, 습도, 풍속"을 확인하세요.
+또한 위치를 검색함으로써 "날씨, (최고/최저)기온, 습도, 풍속"을 확인할 수 있습니다.
+ 
 
 ## Available Scripts
 
